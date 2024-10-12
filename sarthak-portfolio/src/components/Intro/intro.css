@@ -9,11 +9,12 @@
 
 .bg{
     position: absolute;
-    top: -4rem;
-    right: 0;
+    top: -2rem;
+    right: -22rem;
     z-index: -1;
     object-fit: cover;
     height: 100vh;
+    width: 100vw;
 }
 
 .intro-container{
@@ -58,7 +59,7 @@
 
 @media screen and (max-width:840px) {
     .bg{
-        right: -10vw;
+        right: -22vw;
     }
     .intro-container{
         font-size: 10vw;
