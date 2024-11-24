@@ -33,6 +33,8 @@ const Contact: React.FC = () => {
     } catch (error) {
       setToastMessage('Something went wrong, please try again.');
       setToastType('error');
+      setIsSubmitting(false);
+      console.error(error);
     }
   };
 

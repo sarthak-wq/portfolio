@@ -11,14 +11,17 @@ export const handleSubmit = async (
 
   // Set submitting state to true to disable form while sending
   setIsSubmitting(true);
+  console.log(import.meta.env.VITE_SERVICE_ID);
+  console.log(import.meta.env.VITE_TEMPLATE_ID);
+  console.log(import.meta.env.VITE_PUBLIC_KEY);
 
   // Send email using EmailJS
   emailjs
     .send(
-      'service_9z3alvc',
-      'template_6o572ka', 
+      import.meta.env.VITE_SERVICE_ID || '',
+      import.meta.env.VITE_TEMPLATE_ID || '', 
       formData, 
-      '_-05B-TRz3DXvPM-K' 
+      import.meta.env.VITE_PUBLIC_KEY || ''
     )
     .then(
       (result) => {
