@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaLinkedin, FaMapMarkedAlt} from 'react-icons/fa';
+import { handleSubmit } from '../services/email-service.tsx';
 
 const Contact: React.FC = () => {
   // State to manage form inputs
@@ -18,15 +19,37 @@ const Contact: React.FC = () => {
     }));
   };
 
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastType, setToastType] = useState<'success' | 'error' | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFormSubmitEmail = async (e: React.FormEvent) => {
     e.preventDefault();
     // Here you can handle form submission, e.g., send data to an API
-    console.log('Form submitted', formData);
+    try{      
+      await handleSubmit(e,formData, setIsSubmitting , setFormData);      
+      setToastMessage('Your message has been sent successfully!')
+      setToastType('success');
+    } catch (error) {
+      setToastMessage('Something went wrong, please try again.');
+      setToastType('error');
+    }
   };
 
+  useEffect(() => {
+    if (toastMessage) {
+      const timer = setTimeout(() => {
+        setToastMessage(null);
+        setToastType(null);
+      }, 3000); // Toast disappears after 3 seconds
+  
+      return () => clearTimeout(timer); // Cleanup the timer when the component unmounts
+    }
+  }, [toastMessage]);
+  
+
   return (
-    <div className="bg-black text-white py-20" id="contact">
+    <div className="flex bg-black text-white py-20" id="contact">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <h2 className="text-4xl font-bold text-center mb-12">Contact Me</h2>
         <div className="flex flex-col md:flex-row items-center md:space-x-12">
@@ -43,7 +66,7 @@ const Contact: React.FC = () => {
             </div>
             <div className="mb-4">
               <FaLinkedin className="inline-block text-green-400 mr-2" />
-              <a href="mailto:youremail@example.com" className="hover:underline">
+              <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" className="hover:underline">
                 http://www.linkedin.com/in/sarthakdeshmukh1999
               </a>
             </div>
@@ -52,11 +75,12 @@ const Contact: React.FC = () => {
               <span>Boston, Massachusetts, United States</span>
             </div>
           </div>
+          
           <div className="flex-1 w-full">
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleFormSubmitEmail}>
               <div>
                 <label htmlFor="name" className="block mb-2">
-                  Your Name
+                  Name
                 </label>
                 <input
                   type="text"
@@ -66,6 +90,7 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400"
                   placeholder="Enter Your Name"
+                  required
                 />
               </div>
               <div>
@@ -80,6 +105,7 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400"
                   placeholder="Enter Your Email"
+                  required
                 />
               </div>
               <div>
@@ -94,15 +120,34 @@ const Contact: React.FC = () => {
                   className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-green-400"
                   rows={5}
                   placeholder="Enter Your Message"
+                  required
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-green-400 to-blue-500 text-white hidden md:inline transform transition-transform duration-300 hover:scale-105 px-8 py-2 rounded-full"
-              >
-                Send
-              </button>
-            </form>
+              <div className="flex items-center space-x-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`bg-gradient-to-r from-green-400 to-blue-500 text-white transform transition-transform duration-300 hover:scale-105 px-8 py-2 rounded-full ${
+                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send'}
+                </button>
+                {toastMessage && (
+                    <div
+                    className={`flex items-center space-x-2 p-2 transition-all duration-1000 ease-in-out transform ${
+                      toastType === 'success'
+                        ? 'text-white translate-x-0'
+                        : toastType === 'error'
+                        ? 'text-red translate-x-0'
+                        : ''
+                    }`}
+                    >
+                      <p>{toastMessage}</p>
+                    </div>
+                  )}
+                </div>              
+            </form>            
           </div>
         </div>
       </div>

@@ -35,14 +35,14 @@ const projects: Project[] = [
     github: "https://github.com/sarthak-wq",
   },
   {
-    id: 3,
+    id: 4,
     name: "AI Course Advisor",
     technologies: "MERN Stack, Llama-70B",
     image: employeeMSImage,
     github: "https://github.com/sarthak-wq",
   },
   {
-    id: 3,
+    id: 5,
     name: "Donation & Volunteer Management System",
     technologies: "Java, MySQL, Swing, JDBC",
     image: employeeMSImage,
