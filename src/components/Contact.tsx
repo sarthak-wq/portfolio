@@ -62,13 +62,13 @@ const Contact: React.FC = () => {
             <p>I'm open to discuss anything related to Software Engineering or Job Opportunities.</p>
             <div className="mb-4 mt-8">
               <FaEnvelope className="inline-block text-green-400 mr-2" />
-              <a href="mailto:sarthakd.work2@gmail.com" target="_blank" className="hover:underline">
+              <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
                 sarthakd.work2@gmail.com
               </a>
             </div>
             <div className="mb-4">
               <FaLinkedin className="inline-block text-green-400 mr-2" />
-              <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" className="hover:underline">
+              <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank"  rel="noopener noreferrer" className="hover:underline">
                 http://www.linkedin.com/in/sarthakdeshmukh1999
               </a>
             </div>

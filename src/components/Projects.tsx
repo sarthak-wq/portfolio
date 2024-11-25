@@ -1,6 +1,6 @@
 import React from "react";
-import employeeMSImage from "../assets/mypic.jpg";
-import bookMSImage from "../assets/mypic.jpg";
+import employeeMSImage from '/assets/mypic.jpg';
+import bookMSImage from '/assets/mypic.jpg';
 
 
 interface Project {

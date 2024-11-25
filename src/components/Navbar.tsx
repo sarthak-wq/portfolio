@@ -11,8 +11,11 @@ const Navbar: React.FC = () => {
                 <a href="#project" className='hover:text-gray-400'>Projects</a>
                 <a href="#contact" className='hover:text-gray-400'>Contact</a>
             </div>
+            <a href="mailto:sarthakd.work2@gmail.com" target="_blank">
             <button className='bg-gradient-to-r from-green-400 to-blue-500 text-white hidden md:inline
             transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full'>Hire me</button>
+            </a>
+            
         </div>
     </nav>
   );
