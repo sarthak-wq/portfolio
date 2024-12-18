@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
             <div className="mb-4">
               <FaLinkedin className="inline-block text-green-400 mr-2" />
               <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank"  rel="noopener noreferrer" className="hover:underline">
-                http://www.linkedin.com/in/sarthakdeshmukh1999
+                https://www.linkedin.com/in/sarthakdeshmukh1999
               </a>
             </div>
             <div className="mb-4">
