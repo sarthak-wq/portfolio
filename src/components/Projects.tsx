@@ -1,6 +1,7 @@
 import React from "react";
 import etest from '/assets/etest.jpg';
 import dds from '/assets/dds.jpg';
+import chatbot from '/assets/chatbot.jpg';
 
 
 interface Project {
@@ -10,6 +11,7 @@ interface Project {
   technologies: string;
   image: string;
   github: string;
+  website?: string;
 }
 
 
@@ -37,13 +39,15 @@ const projects: Project[] = [
     image: dds,
     github: "https://github.com/sarthak-wq/Drowsiness-Detector",
   },
-  // {
-  //   id: 4,
-  //   name: "AI Course Advisor",
-  //   technologies: "MERN Stack, Llama-70B",
-  //   image: employeeMSImage,
-  //   github: "https://github.com/sarthak-wq",
-  // },
+  {
+    id: 3,
+    name: "AI Course Advisor",
+    description:"AI-powered course registration platform simplifies the academic planning process by helping students select courses that align with their academic goals and career aspirations.",
+    technologies: "MERN Stack, Llama-70B",
+    image: chatbot,
+    github: "https://github.com/sarthak-wq/enrollai",
+    website: "https://enrollfrontend.vercel.app/"
+  }
   // {
   //   id: 5,
   //   name: "Donation & Volunteer Management System",
@@ -80,6 +84,16 @@ const Projects: React.FC = () => {
               >
                 GitHub
               </a>
+              {project.website && (
+                <a
+                  href={project.website}
+                  className="inline-block float-right bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Website
+                </a>
+              )}              
             </div>
           ))}
         </div>

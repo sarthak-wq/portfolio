@@ -16,74 +16,74 @@ const About: React.FC = () => {
             <p className="text-lg mb-8">
             I’m Sarthak Deshmukh, a Full-Stack Developer and AI enthusiast, currently pursuing my Master’s in Information Systems at Northeastern University. With over three years of experience at Accenture, I specialize in building software solutions with technologies like ASP.NET, React, and Microsoft Bot Framework. I’m passionate about using AI to solve real-world problems and improve user experiences. I’m always excited to learn and grow in the tech world.
             </p>
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <label htmlFor="htmlandcss" className="w-2/12">
-                  Cloud (AWS)
-                </label>
-                <div className="grow bg-gray-800 rounded-full h-2.5">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-2.5 rounded-full 
-                    transform transition-transform duration-300 hover:scale-105 w-10/12"
-                  ></div>
-                </div>
+            <div className="mt-12 flex justify-between text-center">
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  MERN STACK
+                </h3>
               </div>
-              <div className="flex items-center">
-                <label htmlFor="nodejs" className="w-2/12">
-                  .NET Core
-                </label>
-                <div className="grow bg-gray-800 rounded-full h-2.5">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-2.5 rounded-full 
-                    transform transition-transform duration-300 hover:scale-105 w-11/12"
-                  ></div>
-                </div>
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  AWS
+                </h3>
               </div>
-              <div className="flex items-center">
-                <label htmlFor="reactjs" className="w-2/12">
-                  ReactJS
-                </label>
-                <div className="grow bg-gray-800 rounded-full h-2.5">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-2.5 rounded-full 
-                    transform transition-transform duration-300 hover:scale-105 w-11/12"
-                  ></div>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <label htmlFor="nodejs" className="w-2/12">
-                  NodeJS
-                </label>
-                <div className="grow bg-gray-800 rounded-full h-2.5">
-                  <div
-                    className="bg-gradient-to-r from-green-400 to-blue-500 h-2.5 rounded-full 
-                    transform transition-transform duration-300 hover:scale-105 w-9/12"
-                  ></div>
-                </div>
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  AZURE DEVOPS
+                </h3>
               </div>
             </div>
             <div className="mt-12 flex justify-between text-center">
-              <div>
+            <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
                 <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  JAVA
+                </h3>
+              </div>
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  PYTHON
+                </h3>
+              </div>
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  .NET CORE
+                </h3>
+              </div>
+            </div>
+            <div className="mt-12 flex justify-between text-center">
+            <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  MONGO DB
+                </h3>
+              </div>
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  ANGULAR JS
+                </h3>
+              </div>
+              <div className="align-middle border-2 border-green-400 px-4 py-2 rounded-full">
+                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-green-400 to-blue-500">
+                  SQL SERVER
+                </h3>
+              </div>
+            </div>
+            <div className="mt-12 flexwrap justify-center justify-between text-center">
+              <div>
+                <h3 className="text-4xl font-bold text-transparent bg-clip-text 
                 bg-gradient-to-r from-green-400 to-blue-500">
                   3+
                 </h3>
                 <p>Years Industry Experience</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
-                bg-gradient-to-r from-green-400 to-blue-500">
-                  5+
-                </h3>
-                <p>Technologies Mastered</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text 
-                bg-gradient-to-r from-green-400 to-blue-500">
-                  2
-                </h3>
-                <p>Research Papers Published</p>
-              </div>
+              </div>              
             </div>
           </div>
         </div>
