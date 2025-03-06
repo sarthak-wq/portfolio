@@ -2,7 +2,7 @@
   "name": "app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "/",
+  "homepage": "https://sarthak-wq.github.io/portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",
