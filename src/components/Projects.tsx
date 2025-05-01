@@ -13,6 +13,10 @@ interface Project {
   website?: string;
 }
 
+interface ProjectsProps {
+  isDarkMode: boolean;
+}
+
 const projects: Project[] = [
   {
     id: 1,
@@ -41,16 +45,16 @@ const projects: Project[] = [
   }
 ];
 
-const Projects: React.FC = () => {
+const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
   return (
-    <div className="bg-futuristic text-white py-20 section" id="project">
+    <div className={`py-20 section ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`} id="project">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <h2 className="text-4xl font-bold text-center mb-12 text-teal-400">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="bg-gray-800 p-6 rounded-lg hover:shadow-lg transform transition-transform duration-300 hover:scale-105"
+              className={`p-6 rounded-lg hover:shadow-lg transform transition-transform duration-300 hover:scale-105 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}
             >
               <img
                 src={project.image}
@@ -59,7 +63,7 @@ const Projects: React.FC = () => {
               />
               <h3 className="text-2xl font-bold mb-2 text-teal-400">{project.name}</h3>
               <p className="text-gray-400 mb-4">{project.technologies}</p>
-              <p className="text-white-400 mb-4 text-sm">{project.description}</p>
+              <p className="text-sm mb-4">{project.description}</p>
               <a
                 href={project.github}
                 className="inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-full"

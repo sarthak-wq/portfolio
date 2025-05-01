@@ -1,9 +1,13 @@
 import React from "react";
 import MyPhoto from '/assets/mypic.jpg';
 
-const About: React.FC = () => {
+interface AboutProps {
+  isDarkMode: boolean;
+}
+
+const About: React.FC<AboutProps> = ({ isDarkMode }) => {
   return (
-    <div className="bg-futuristic text-white py-20" id="about">
+    <div className={`py-20 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`} id="about">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <h2 className="text-4xl font-bold text-center mb-12 text-indigo-400">About Me</h2>
         <div className="flex flex-col md:flex-row items-center md:space-x-12">

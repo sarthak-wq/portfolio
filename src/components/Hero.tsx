@@ -1,22 +1,26 @@
 import React from 'react';
 import HeroImage from '/assets/mypic.jpg';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  isDarkMode: boolean;
+}
+
+const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
   return (
-    <div className="bg-futuristic text-white text-center py-16 section">
+    <div className={`text-center py-16 section ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <img
         src={HeroImage}
         alt="Sarthak Deshmukh"
         className="mx-auto mb-8 w-48 h-48 rounded-full object-cover transform transition-transform duration-300 hover:scale-105"
       />
       <h1 className="text-4xl font-bold">
-        I'm {' '}
+        I'm{' '}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-blue-500">
           Sarthak Deshmukh
         </span>
         , Full-Stack Developer
       </h1>
-      <p className="mt-4 text-lg text-gray-300">
+      <p className="mt-4 text-lg">
         Building digital experiences that might not always be flashy, but definitely make life a whole lot easier.
       </p>
       <div className="mt-8 space-x-4">

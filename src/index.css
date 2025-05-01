@@ -8,6 +8,25 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode a {
+  color: #39ff14;
+}
+
+body.dark-mode .ant-btn-primary {
+  background-color: #39ff14;
+  border-color: #39ff14;
+}
+
+body.dark-mode .ant-drawer {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
