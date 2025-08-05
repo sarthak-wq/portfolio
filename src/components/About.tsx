@@ -1,84 +1,92 @@
 import React from "react";
-import MyPhoto from '/assets/mypic.jpg';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface AboutProps {
   isDarkMode: boolean;
 }
 
 const About: React.FC<AboutProps> = ({ isDarkMode }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const allSkills = [
+    "React", "AngularJS", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS",
+    ".NET Core", "Node.js", "Express.js", "Python", "Java", "ASP.NET", "RESTful APIs",
+    "MongoDB", "SQL Server", "PostgreSQL", "MySQL",
+    "AWS", "Azure DevOps", "Docker", "Git", "CI/CD",
+    "Agile/Scrum", "Jira", "Postman", "VS Code"
+  ];
+
+  const sectionItemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
+
   return (
-    <div className={`py-20 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`} id="about">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-12 text-indigo-400">About Me</h2>
-        <div className="flex flex-col md:flex-row items-center md:space-x-12">
-          <img
-            src={MyPhoto}
-            alt="About Me"
-            className="w-72 h-72 rounded-full object-cover mb-8 md:mb-0"
-          />
+    <div
+      className={`py-20 ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}`}
+      id="about"
+      ref={ref}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={sectionItemVariants}
+        >
+          About Me
+        </motion.h2>
+        <div className="flex flex-col md:flex-row md:items-start md:space-x-12">
+          <motion.div
+            className="flex-1 space-y-6 mb-10 md:mb-0"
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            variants={sectionItemVariants}
+          >
+            <motion.p className="text-xl leading-relaxed mb-6"
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={sectionItemVariants}>
+              I’m <span className="font-semibold text-primary">Sarthak Deshmukh</span>, a Full-Stack Developer and AI enthusiast, currently pursuing my Master’s in Information Systems at Northeastern University. With over three years of experience at Accenture, I specialize in building robust software solutions with technologies like <span className="font-semibold text-secondary">React, .NET, Python, and cloud platforms like AWS and Azure</span>. My passion lies in leveraging cutting-edge technologies to create intuitive user experiences and solve complex real-world problems, constantly seeking opportunities to learn, grow, and contribute to impactful projects.
+            </motion.p>
+            <motion.div
+              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-grow transition-all duration-300`}
+              variants={cardVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+            >
+              <h3 className="text-3xl font-bold text-center text-primary mb-4">3+</h3>
+              <p className="text-center text-lg font-medium">Years of Industry Experience</p>
+            </motion.div>
+          </motion.div>
+
           <div className="flex-1">
-            <p className="text-lg mb-8">
-              I’m Sarthak Deshmukh, a Full-Stack Developer and AI enthusiast, currently pursuing my Master’s in Information Systems at Northeastern University. With over three years of experience at Accenture, I specialize in building software solutions with technologies like ASP.NET, React, and Microsoft Bot Framework. I’m passionate about using AI to solve real-world problems and improve user experiences. I’m always excited to learn and grow in the tech world.
-            </p>
-            <div className="mt-12 flex justify-between text-center">
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  MERN STACK
-                </h3>
-              </div>
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  AWS
-                </h3>
-              </div>
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  AZURE DEVOPS
-                </h3>
-              </div>
-            </div>
-            <div className="mt-12 flex justify-between text-center">
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  JAVA
-                </h3>
-              </div>
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  PYTHON
-                </h3>
-              </div>
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  .NET CORE
-                </h3>
-              </div>
-            </div>
-            <div className="mt-12 flex justify-between text-center">
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  MONGO DB
-                </h3>
-              </div>
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  ANGULAR JS
-                </h3>
-              </div>
-              <div className="align-middle border-2 border-soft-orange px-4 py-2 rounded-full">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  SQL SERVER
-                </h3>
-              </div>
-            </div>
-            <div className="mt-12 flexwrap justify-center justify-between text-center">
-              <div>
-                <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-                  3+
-                </h3>
-                <p>Years Industry Experience</p>
-              </div>
-            </div>
+            <motion.div
+              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-lift transition-all duration-300`}
+              variants={cardVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+            >
+              <h3 className="text-xl font-bold text-secondary mb-4 border-b-2 border-primary pb-2">
+                Technologies & Tools
+              </h3>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 list-none p-0">
+                {allSkills.map((skill, index) => (
+                  <li key={index} className="text-lg flex items-center">
+                    <span className="mr-2 text-primary">&#8226;</span> {skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
       </div>

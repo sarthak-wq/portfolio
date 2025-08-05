@@ -1,154 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaEnvelope, FaLinkedin, FaMapMarkedAlt } from 'react-icons/fa';
-import { handleSubmit } from '../services/email-service.tsx';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface ContactProps {
   isDarkMode: boolean;
 }
 
 const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const sectionItemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
   };
 
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [toastType, setToastType] = useState<'success' | 'error' | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleFormSubmitEmail = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await handleSubmit(e, formData, setIsSubmitting, setFormData);
-      setToastMessage('Your message has been sent successfully!');
-      setToastType('success');
-    } catch (error) {
-      setToastMessage('Something went wrong, please try again.');
-      setToastType('error');
-      setIsSubmitting(false);
-      console.error(error);
-    }
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
   };
-
-  useEffect(() => {
-    if (toastMessage) {
-      const timer = setTimeout(() => {
-        setToastMessage(null);
-        setToastType(null);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [toastMessage]);
 
   return (
-    <div className={`flex py-20 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`} id="contact">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-12 text-purple-400">Contact Me</h2>
-        <div className="flex flex-col md:flex-row items-center md:space-x-12">
-          <div className="flex-1">
-            <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 mb-4">
-              Let's Talk
-            </h3>
-            <p>I'm open to discuss anything related to Software Engineering or Job Opportunities.</p>
-            <div className="mb-4 mt-8">
-              <FaEnvelope className="inline-block text-neon-green mr-2" />
-              <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                sarthakd.work2@gmail.com
-              </a>
-            </div>
-            <div className="mb-4">
-              <FaLinkedin className="inline-block text-neon-green mr-2" />
-              <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                https://www.linkedin.com/in/sarthakdeshmukh1999
-              </a>
-            </div>
-            <div className="mb-4">
-              <FaMapMarkedAlt className="inline-block text-neon-green mr-2" />
-              <span>Boston, Massachusetts, United States</span>
-            </div>
-          </div>
-          <div className="flex-1 w-full">
-            <form className="space-y-4" onSubmit={handleFormSubmitEmail}>
-              <div>
-                <label htmlFor="name" className="block mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-neon-green"
-                  placeholder="Enter Your Name"
-                  required
-                />
+    <div
+      className={`py-20 ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}`}
+      id="contact"
+      ref={ref}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={sectionItemVariants}
+        >
+          Contact Me
+        </motion.h2>
+        <div className="flex justify-center">
+          <motion.div
+            className="w-full md:w-2/3 lg:w-1/2 text-center"
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            variants={sectionItemVariants}
+          >
+            <motion.h3
+              className="text-3xl font-bold text-secondary mb-4 animate-slide-up"
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={sectionItemVariants}
+            >
+              Let's Connect
+            </motion.h3>
+            <p className="text-lg leading-relaxed mb-10">
+              I'm always open to discussing new opportunities, collaborations, or just saying hello. Feel free to reach out!
+            </p>
+            <motion.div
+              className={`p-8 rounded-lg shadow-lg inline-block ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-grow transition-all duration-300`}
+              variants={cardVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+            >
+              <div className="mb-5 flex items-center justify-center md:justify-start">
+                <FaEnvelope className="inline-block text-primary mr-3 text-2xl" />
+                <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium">
+                  deshmukh.sar@northeastern.edu
+                </a>
               </div>
-              <div>
-                <label htmlFor="email" className="block mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-neon-green"
-                  placeholder="Enter Your Email"
-                  required
-                />
+              <div className="mb-5 flex items-center justify-center md:justify-start">
+                <FaLinkedin className="inline-block text-primary mr-3 text-2xl" />
+                <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium">
+                  linkedin.com/in/sarthakdeshmukh1999
+                </a>
               </div>
-              <div>
-                <label htmlFor="message" className="block mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className="w-full p-2 rounded bg-gray-800 border border-gray-600 focus:outline-none focus:border-neon-green"
-                  rows={5}
-                  placeholder="Enter Your Message"
-                  required
-                />
+              <div className="flex items-center justify-center md:justify-start">
+                <FaMapMarkedAlt className="inline-block text-primary mr-3 text-2xl" />
+                <span className="text-lg font-medium">Boston, Massachusetts, United States</span>
               </div>
-              <div className="flex items-center space-x-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`bg-gradient-to-r from-green-400 to-blue-500 text-white transform transition-transform duration-300 hover:scale-105 px-8 py-2 rounded-full ${
-                    isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send'}
-                </button>
-                {toastMessage && (
-                  <div
-                    className={`flex items-center space-x-2 p-2 transition-all duration-1000 ease-in-out transform ${
-                      toastType === 'success'
-                        ? 'text-white translate-x-0'
-                        : toastType === 'error'
-                        ? 'text-red translate-x-0'
-                        : ''
-                    }`}
-                  >
-                    <p>{toastMessage}</p>
-                  </div>
-                )}
-              </div>
-            </form>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </div>

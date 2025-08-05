@@ -19,6 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, setIsDarkMode }) => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false); // Close drawer after clicking a link
     }
   };
 
@@ -27,22 +28,47 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, setIsDarkMode }) => {
   };
 
   return (
-    <nav className={`px-4 md:px-16 lg:px-24 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-      <div className="container py-4 mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">Sarthak</div>
-        <div className="hidden md:flex space-x-6">
-          <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="hover:text-blue-500">Home</a>
-          <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-blue-500">About Me</a>
-          <a href="#timeline" onClick={(e) => handleSmoothScroll(e, 'timeline')} className="hover:text-blue-500">Experience</a>
-          <a href="#project" onClick={(e) => handleSmoothScroll(e, 'project')} className="hover:text-blue-500">Projects</a>
-          <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-blue-500">Contact</a>
+    <nav className={`fixed w-full z-50 py-4 shadow-md ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-cardLight text-textLight'}`}>
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <div className="text-3xl font-bold text-primary animate-fade-in">
+          <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="hover-underline-animated">
+            Sarthak
+          </a>
         </div>
-        <div className="flex items-center space-x-4">
-          <Switch checked={isDarkMode} onChange={toggleDarkMode} checkedChildren="Dark" unCheckedChildren="Light" />
-          <Button type="primary" href="mailto:sarthakd.work2@gmail.com" target="_blank">
+        <div className="hidden md:flex space-x-8 items-center">
+          {['home', 'about', 'timeline', 'project', 'contact'].map((id) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={(e) => handleSmoothScroll(e, id)}
+              className="text-lg font-medium hover-underline-animated transform transition-transform duration-300 hover:scale-105"
+            >
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </a>
+          ))}
+          <Switch
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            checkedChildren="Dark"
+            unCheckedChildren="Light"
+            className="ml-4"
+          />
+          <Button
+            type="primary"
+            href="mailto:sarthakd.work2@gmail.com"
+            target="_blank"
+            className="bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift"
+          >
             Hire Me
           </Button>
-          <Button className="md:hidden" icon={isMenuOpen ? <CloseOutlined /> : <MenuOutlined />} onClick={toggleMenu} />
+        </div>
+        <div className="flex items-center md:hidden">
+          <Switch checked={isDarkMode} onChange={toggleDarkMode} checkedChildren="Dark" unCheckedChildren="Light" className="mr-4" />
+          <Button
+            className="text-textLight dark:text-textDark border-none"
+            icon={isMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
+            onClick={toggleMenu}
+          />
         </div>
       </div>
       <Drawer
@@ -51,13 +77,27 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, setIsDarkMode }) => {
         onClose={toggleMenu}
         open={isMenuOpen}
         styles={{ body: { padding: 0 } }}
+        className={isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-cardLight text-textLight'}
       >
-        <div className="flex flex-col space-y-4 p-4">
-          <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="hover:text-blue-500">Home</a>
-          <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="hover:text-blue-500">About Me</a>
-          <a href="#timeline" onClick={(e) => handleSmoothScroll(e, 'timeline')} className="hover:text-blue-500">Experience</a>
-          <a href="#project" onClick={(e) => handleSmoothScroll(e, 'project')} className="hover:text-blue-500">Projects</a>
-          <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="hover:text-blue-500">Contact</a>
+        <div className="flex flex-col space-y-6 p-6">
+          {['home', 'about', 'timeline', 'project', 'contact'].map((id) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={(e) => handleSmoothScroll(e, id)}
+              className="text-xl font-medium text-textLight dark:text-textDark hover:text-primary transition-colors duration-300"
+            >
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </a>
+          ))}
+          <Button
+            type="primary"
+            href="mailto:sarthakd.work2@gmail.com"
+            target="_blank"
+            className="bg-primary hover:bg-secondary text-white font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300 ease-in-out mt-4"
+          >
+            Hire Me
+          </Button>
         </div>
       </Drawer>
     </nav>

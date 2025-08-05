@@ -1,64 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Merriweather:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  color: #e0e0e0;
-  font-family: 'Roboto', sans-serif;
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
-body.dark-mode a {
-  color: #39ff14;
-}
-
-body.dark-mode .ant-btn-primary {
-  background-color: #39ff14;
-  border-color: #39ff14;
-}
-
-body.dark-mode .ant-drawer {
-  background-color: #1e1e1e;
-  color: #e0e0e0;
+  @apply font-sans bg-backgroundLight text-textLight dark:bg-backgroundDark dark:text-textDark;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-.bg-gradient {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.text-neon-green {
-  color: #39ff14;
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-.border-neon-green {
-  border-color: #39ff14;
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
-.bg-neon-green {
-  background-color: #39ff14;
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
-.bg-futuristic {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+/* Global hover effects */
+.hover-grow:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease-in-out;
 }
 
-.hover\:bg-futuristic:hover {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+.hover-lift:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 0.5rem;
-  }
+.hover-underline-animated {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animated::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: theme('colors.primary');
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animated:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

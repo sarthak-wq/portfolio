@@ -1,10 +1,20 @@
 .fade-appear, .fade-enter {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(10px); /* Subtle starting position */
 }
 
 .fade-appear-active, .fade-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 500ms, transform 500ms;
+  transition: opacity 700ms ease-out, transform 700ms ease-out; /* Smoother transition */
+}
+
+/* Add hover effects for potential interactive elements */
+.hero-button { /* Assuming a class for buttons in the hero */
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.hero-button:hover {
+  background-color: #d3d3d3; /* A light grey for a subtle hover effect */
+  transform: translateY(-3px); /* Subtle lift on hover */
 }
