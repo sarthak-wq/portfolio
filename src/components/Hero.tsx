@@ -48,7 +48,7 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
     <div
       id="home"
       className={`relative min-h-screen flex items-center justify-center py-20 overflow-hidden
-        ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}
+        ${isDarkMode ? 'text-textDark' : 'text-textLight'}
       `}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between z-10">
@@ -81,8 +81,8 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
           >
             {roleDescription.map((word, index) => (
               <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
-                {word}
-              </motion.span>
+                  {word}
+            </motion.span>
             ))}
           </motion.p>
           <motion.div
@@ -116,14 +116,20 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
           </motion.div>
         </div>
 
-        {/* Image/Visual Element */}
+        {/* Image/Visual Element with Circular Border */}
         <motion.div
           className="md:w-1/2 flex justify-center items-center relative"
           variants={imageContainerVariants}
           initial="hidden"
           animate="visible"
         >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-secondary flex items-center justify-center">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-secondary flex items-center justify-center z-10"> 
+            {/* Circular Border Animation */}
+            <div
+              className={
+                `absolute inset-[-4px] rounded-full custom-border-animation ${isDarkMode ? 'dark-mode-border' : 'light-mode-border'}`
+              }
+            ></div>
             <motion.img
               src={HeroImage}
               alt="Sarthak Deshmukh"

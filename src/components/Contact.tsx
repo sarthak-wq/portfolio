@@ -57,26 +57,26 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
               I'm always open to discussing new opportunities, collaborations, or just saying hello. Feel free to reach out!
             </p>
             <motion.div
-              className={`p-8 rounded-lg shadow-lg inline-block ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-grow transition-all duration-300`}
+              className={`p-8 rounded-lg shadow-lg mx-auto ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-grow transition-all duration-300`}
               variants={cardVariants}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
             >
-              <div className="mb-5 flex items-center justify-center md:justify-start">
-                <FaEnvelope className="inline-block text-primary mr-3 text-2xl" />
-                <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium">
+              <div className="mb-5 flex flex-col sm:flex-row items-center justify-center md:justify-start">
+                <FaEnvelope className="inline-block text-primary mr-3 text-2xl mb-2 sm:mb-0" />
+                <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium text-center sm:text-left">
                   deshmukh.sar@northeastern.edu
                 </a>
               </div>
-              <div className="mb-5 flex items-center justify-center md:justify-start">
-                <FaLinkedin className="inline-block text-primary mr-3 text-2xl" />
-                <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium">
+              <div className="mb-5 flex flex-col sm:flex-row items-center justify-center md:justify-start">
+                <FaLinkedin className="inline-block text-primary mr-3 text-2xl mb-2 sm:mb-0" />
+                <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium text-center sm:text-left">
                   linkedin.com/in/sarthakdeshmukh1999
                 </a>
               </div>
-              <div className="flex items-center justify-center md:justify-start">
-                <FaMapMarkedAlt className="inline-block text-primary mr-3 text-2xl" />
-                <span className="text-lg font-medium">Boston, Massachusetts, United States</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start">
+                <FaMapMarkedAlt className="inline-block text-primary mr-3 text-2xl mb-2 sm:mb-0" />
+                <span className="text-lg font-medium text-center sm:text-left">Boston, Massachusetts, United States</span>
               </div>
             </motion.div>
           </motion.div>

@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Merriweather:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans bg-backgroundLight text-textLight dark:bg-backgroundDark dark:text-textDark;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Global hover effects */
+.hover-grow:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-underline-animated {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animated::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: theme('colors.primary');
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animated:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.futuristic-grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.futuristic-grid-background.light-mode-grid {
+  background-image: linear-gradient(to right, #d0d0d0 1px, transparent 1px),
+                    linear-gradient(to bottom, #d0d0d0 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: pan-grid-light 30s linear infinite;
+}
+
+.futuristic-grid-background.dark-mode-grid {
+  background-image: linear-gradient(to right, #3a4b5c 1px, transparent 1px),
+                    linear-gradient(to bottom, #3a4b5c 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: pan-grid-dark 30s linear infinite;
+}
+
+@keyframes pan-grid-light {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 300px 300px;
+  }
+}
+
+@keyframes pan-grid-dark {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 300px 300px;
+  }
+}

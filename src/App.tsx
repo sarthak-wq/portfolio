@@ -6,17 +6,26 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Timeline from './components/Timeline';
 import { Layout } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const { Content } = Layout;
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   return (
-    <Layout className={isDarkMode ? 'dark-mode' : ''}>
+    <Layout className={`relative min-h-screen ${isDarkMode ? 'bg-backgroundDark' : 'bg-backgroundLight'}`}>
+      <div className={`futuristic-grid-background ${isDarkMode ? 'dark-mode-grid' : 'light-mode-grid'}`}></div>
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-      <Content>
+      <Content style={{ background: 'transparent' }}>
         <Hero isDarkMode={isDarkMode} />
         <About isDarkMode={isDarkMode} />
         <Timeline isDarkMode={isDarkMode} />
