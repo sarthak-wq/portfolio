@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroImage from '../../assets/mypic.jpg';
+import HeroImage from '../../assets/mypicwithryder.jpeg';
 import { Button } from 'antd';
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaFileAlt } from 'react-icons/fa';
@@ -144,17 +144,17 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
           initial="hidden"
           animate="visible"
         >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-secondary flex items-center justify-center z-10"> 
+          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-secondary flex items-center justify-center z-10"> 
             {/* Circular Border Animation */}
             <div
               className={
-                `absolute inset-[-4px] rounded-full custom-border-animation ${isDarkMode ? 'dark-mode-border' : 'light-mode-border'}`
+                `absolute inset-[-4px] rounded-2xl custom-border-animation ${isDarkMode ? 'dark-mode-border' : 'light-mode-border'}`
               }
             ></div>
             <motion.img
               src={HeroImage}
               alt="Sarthak Deshmukh"
-              className="absolute w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-2xl"
+              className="absolute w-60 h-60 md:w-72 md:h-72 rounded-2xl object-cover shadow-2xl"
               variants={heroImageVariants}
               initial="hidden"
               animate="visible"

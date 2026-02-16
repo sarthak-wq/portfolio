@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button, Drawer } from 'antd';
 
-// Removed NavbarProps interface since props are no longer needed
 const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,25 +18,34 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const menuItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'timeline', label: 'Timeline' },
+    { id: 'project', label: 'Projects' },
+    { id: 'hobbies', label: 'Hobbies' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   return (
     <nav className="fixed w-full z-50 py-4 shadow-md bg-backgroundDark text-textDark">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="text-3xl font-bold text-primary animate-fade-in">
-          <a href="#home" onClick={(e: any) => handleSmoothScroll(e, 'home')} className="hover-underline-animated">
+          <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="hover-underline-animated">
             Sarthak
           </a>
         </div>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 items-center">
-          {['home', 'about', 'timeline', 'project', 'contact'].map((id) => (
+        <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">
+          {menuItems.map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
-              onClick={(e: any) => handleSmoothScroll(e, id)}
+              onClick={(e) => handleSmoothScroll(e, id)}
               className="text-lg font-medium hover-underline-animated transform transition-transform duration-300 hover:scale-105"
             >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
+              {label}
             </a>
           ))}
           <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer">
@@ -73,14 +81,14 @@ const Navbar: React.FC = () => {
         closeIcon={<CloseOutlined className="text-textDark" />}
       >
         <div className="flex flex-col space-y-6 p-6 items-center">
-          {['home', 'about', 'timeline', 'project', 'contact'].map((id) => (
+          {menuItems.map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
-              onClick={(e: any) => handleSmoothScroll(e, id)}
+              onClick={(e) => handleSmoothScroll(e, id)}
               className="text-xl font-medium hover:text-primary transition-colors duration-300 text-textDark"
             >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
+              {label}
             </a>
           ))}
           <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="mt-4">

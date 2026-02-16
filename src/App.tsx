@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Timeline from './components/Timeline';
+import Hobbies from './components/Hobbies';
 import { Layout } from 'antd';
 import { useEffect } from 'react';
 
@@ -24,6 +25,7 @@ function App() {
         <About isDarkMode={true} />
         <Timeline isDarkMode={true} />
         <Projects isDarkMode={true} />
+        <Hobbies isDarkMode={true}/>
         <Contact isDarkMode={true} />
       </Content>
     </Layout>
