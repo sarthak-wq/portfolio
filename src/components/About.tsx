@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import aboutmebgimage from '../../assets/photo9.jpeg';
 
 interface AboutProps {
   isDarkMode: boolean;
@@ -13,11 +14,10 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
   });
 
   const allSkills = [
-    "React", "AngularJS", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS",
-    ".NET Core", "Node.js", "Express.js", "Python", "Java", "ASP.NET", "RESTful APIs",
-    "MongoDB", "SQL Server", "PostgreSQL", "MySQL",
-    "AWS", "Azure DevOps", "Docker", "Git", "CI/CD",
-    "Agile/Scrum", "Jira", "Postman", "VS Code"
+    "React.js","React Native", "JavaScript", "Linux", "Docker", "Kubernetes",
+    ".NET Core", "Node.js", "Express.js", "Python", "Java", "ASP.NET Core", "RESTful APIs",
+    "MongoDB", "SQL Server", "PostgreSQL", "MySQL", "AWS", "Azure DevOps", "Git", "CI/CD",
+    "Agile/Scrum", "LangChain", "MCP Servers", "System Design", "Distributed Systems", "Redis"
   ];
 
   const sectionItemVariants = {
@@ -32,11 +32,18 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
 
   return (
     <div
-      className={`py-20 ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}`}
+      className={`py-20 relative text-white`} 
       id="about"
       ref={ref}
+      style={{
+        backgroundImage: `url(${aboutmebgimage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`absolute inset-0 ${isDarkMode ? 'bg-black/50' : 'bg-black/40'} z-0`}></div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
           className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
           initial="hidden"
@@ -52,26 +59,26 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
             animate={inView ? 'visible' : 'hidden'}
             variants={sectionItemVariants}
           >
-            <motion.p className="text-xl leading-relaxed mb-6"
+            <motion.p className="text-xl leading-relaxed mb-6 text-white"
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
               variants={sectionItemVariants}>
               I’m <span className="font-semibold text-primary">Sarthak Deshmukh</span>, a Full-Stack Developer and AI enthusiast, currently pursuing my Master’s in Information Systems at Northeastern University. With over three years of experience at Accenture, I specialize in building robust software solutions with technologies like <span className="font-semibold text-secondary">React, .NET, Python, and cloud platforms like AWS and Azure</span>. My passion lies in leveraging cutting-edge technologies to create intuitive user experiences and solve complex real-world problems, constantly seeking opportunities to learn, grow, and contribute to impactful projects.
             </motion.p>
             <motion.div
-              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-grow transition-all duration-300`}
+              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark/80' : 'bg-cardLight/90'} hover-grow transition-all duration-300`}
               variants={cardVariants}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
             >
-              <h3 className="text-3xl font-bold text-center text-primary mb-4">3+</h3>
-              <p className="text-center text-lg font-medium">Years of Industry Experience</p>
+              <h3 className="text-3xl font-bold text-center text-primary mb-4">4</h3>
+              <p className={`text-center text-lg font-medium ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Years of Industry Experience</p>
             </motion.div>
           </motion.div>
 
           <div className="flex-1">
             <motion.div
-              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-lift transition-all duration-300`}
+              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark/80' : 'bg-cardLight/90'} hover-lift transition-all duration-300`}
               variants={cardVariants}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
@@ -81,7 +88,7 @@ const About: React.FC<AboutProps> = ({ isDarkMode }) => {
               </h3>
               <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 list-none p-0">
                 {allSkills.map((skill, index) => (
-                  <li key={index} className="text-lg flex items-center">
+                  <li key={index} className={`text-lg flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
                     <span className="mr-2 text-primary">&#8226;</span> {skill}
                   </li>
                 ))}

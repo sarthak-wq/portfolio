@@ -2,6 +2,7 @@ import React from 'react';
 import { FaEnvelope, FaLinkedin, FaMapMarkedAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import contactbgimage from '../../assets/photo3.jpeg';
 
 interface ContactProps {
   isDarkMode: boolean;
@@ -28,6 +29,12 @@ const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
       className={`py-20 ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}`}
       id="contact"
       ref={ref}
+      style={{
+        backgroundImage: `url(${contactbgimage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2

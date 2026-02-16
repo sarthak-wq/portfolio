@@ -1,8 +1,9 @@
 import React from 'react';
-import HeroImage from '/assets/mypic.jpg';
+import HeroImage from '../../assets/mypic.jpg';
 import { Button } from 'antd';
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaFileAlt } from 'react-icons/fa';
+import herobgimage from '../../assets/photo6.jpeg';
 
 interface HeroProps {
   isDarkMode: boolean;
@@ -42,7 +43,8 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
 
   const greeting = "Hi, I'm ".split(' ');
   const name = "Sarthak Deshmukh".split(' ');
-  const roleDescription = "A passionate Full-Stack Developer crafting intuitive and efficient digital experiences.".split(' ');
+  const roleDescription = "Full-Stack Developer & System Architect crafting intuitive and efficient digital experiences.".split(' ');
+  const availability = "Open to New Grad SDE / SDE 2 role.".split(' ');
 
   return (
     <div
@@ -50,22 +52,29 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
       className={`relative min-h-screen flex items-center justify-center py-20 overflow-hidden
         ${isDarkMode ? 'text-textDark' : 'text-textLight'}
       `}
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${herobgimage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between z-10">
         {/* Text Content */}
         <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
           <motion.h1
-            className="text-5xl lg:text-6xl font-extrabold leading-tight animate-fade-in"
+            className="text-5xl lg:text-6xl font-extrabold leading-tight animate-fade-in text-white"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {greeting.map((word, index) => (
-              <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
+              <motion.span key={index} variants={wordVariants} className="inline-block mr-2 text-white">
                 {word}
               </motion.span>
             ))}
-            <span className="text-primary inline-block"> {/* For Sarthak Deshmukh to be primary color */}
+            <span className="text-primary inline-block text-accent"> {/* For Sarthak Deshmukh to be primary color */}
               {name.map((word, index) => (
                 <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
                   {word}
@@ -74,12 +83,24 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
             </span>
           </motion.h1>
           <motion.p
-            className="mt-4 text-xl lg:text-2xl font-light animate-slide-up"
+            className="mt-4 text-xl lg:text-2xl font-light animate-slide-up text-gray-200"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {roleDescription.map((word, index) => (
+              <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
+                  {word}
+            </motion.span>
+            ))}
+          </motion.p>
+          <motion.p
+            className="mt-4 text-xl lg:text-2xl font-light animate-slide-up text-gray-200"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {availability.map((word, index) => (
               <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
                   {word}
             </motion.span>
@@ -94,21 +115,21 @@ const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
             <a href="https://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer">
               <Button
                 type="primary"
-                className="bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
+                className="bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2 border-none"
               >
                 <FaLinkedin /> <span>LinkedIn</span>
               </Button>
             </a>
             <a href="https://github.com/sarthak-deshmukh1999" target="_blank" rel="noopener noreferrer">
               <Button
-                className="bg-cardDark hover:bg-gray-700 text-textDark dark:bg-cardLight dark:hover:bg-gray-200 dark:text-textLight font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
+                className="bg-gray-800 hover:bg-gray-700 text-white border-none font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
               >
                 <FaGithub /> <span>GitHub</span>
               </Button>
             </a>
-            <a href="/Sarthak_Deshmukh_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/Latest_Resume2026.pdf" target="_blank" rel="noopener noreferrer">
               <Button
-                className="bg-accent hover:bg-yellow-600 text-textLight dark:text-textDark font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
+                className="bg-accent hover:bg-yellow-600 text-black border-none font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
               >
                 <FaFileAlt /> <span>Resume</span>
               </Button>

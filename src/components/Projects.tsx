@@ -4,12 +4,13 @@ import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 // Import all project images
-import memexlensImage from '/assets/memexlens.png';
-import galleryImage from '/assets/gallery.png';
-import awsImage from '/assets/aws.png';
-import etestImage from '/assets/etest.jpg';
-import ddsImage from '/assets/dds.jpg';
-import chatbotImage from '/assets/chatbot.jpg';
+import memexlensImage from '../../assets/memexlens.png';
+import galleryImage from '../../assets/gallery.png';
+import awsImage from '../../assets/aws.png';
+import etestImage from '../../assets/etest.jpg';
+import ddsImage from '../../assets/dds.jpg';
+import chatbotImage from '../../assets/chatbot.jpg';
+import projectbgimage from '../../assets/photo7.jpeg';
 
 interface Project {
   id: number;
@@ -40,7 +41,8 @@ const projects: Project[] = [
     description: "A cloud-based photo gallery (React, Node.js, Express) with Firestore and Google Cloud Storage, deployed on Google Cloud with GitHub Actions CI/CD.",
     technologies: "Node.js, Google Cloud Run, Firestore, Material UI, React, Express, shadcn/ui, Google Cloud Storage, Google App Engine, GitHub Actions",
     image: galleryImage, 
-    github: "https://github.com/sarthak-deshmukh1999/galleryserver"
+    github: "https://github.com/sarthak-deshmukh1999/galleryserver",
+    website: "https://galleryapp-457905.uc.r.appspot.com/gallery"
   },
   {
     id: 6,
@@ -103,11 +105,18 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
 
   return (
     <div
-      className={`py-20 ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}`}
+      className={`py-20 relative overflow-hidden`}
       id="project"
       ref={ref}
+      style={{
+        backgroundImage: `url(${projectbgimage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Removed the overlay div */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
           className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
           initial="hidden"
@@ -121,7 +130,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
             <motion.div
               key={project.id}
               className={`relative p-6 rounded-lg shadow-lg group overflow-hidden
-                ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'}
+                ${isDarkMode ? 'bg-cardDark/95' : 'bg-cardLight/95'}
                 transition-all duration-300 ease-in-out hover:shadow-xl hover-grow
               `}
               variants={cardVariants}
@@ -137,10 +146,10 @@ const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
               <h3 className="text-2xl font-bold mb-2 text-secondary group-hover:text-primary transition-colors duration-300">
                 {project.name}
               </h3>
-              <p className="text-sm font-medium text-textLight dark:text-textDark opacity-80 mb-3">
+              <p className={`text-sm font-medium opacity-80 mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {project.technologies}
               </p>
-              <p className="text-base leading-relaxed mb-6">
+              <p className={`text-base leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-3 mt-4">
