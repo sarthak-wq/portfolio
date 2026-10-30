@@ -3,7 +3,7 @@ import portrait from '../../assets/mypicwithryder.jpeg';
 
 const facts = [
   { label: 'Based in', value: 'Boston, Massachusetts' },
-  { label: 'Studying', value: 'MS Information Systems, Northeastern' },
+  { label: 'Education', value: 'MS Computer Science, Northeastern' },
   { label: 'Experience', value: 'Four years in industry' },
   { label: 'Focus', value: 'Full-stack and backend AI' },
 ];
@@ -29,7 +29,7 @@ const About: React.FC = () => {
         <div className="about__col" data-reveal>
           <div className="about__bio">
             <p>
-              I&rsquo;m a full-stack developer finishing a Master&rsquo;s in Information Systems at
+              I&rsquo;m a full-stack developer with a Master&rsquo;s in Computer Science from
               Northeastern. Three years at Accenture, a recent stint engineering backend AI agents at
               Nokia, and work that runs from a Postgres query to the interface on top of it.
             </p>

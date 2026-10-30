@@ -166,6 +166,9 @@ a { color: inherit; text-decoration: none; }
 .cv__row { display: grid; grid-template-columns: 148px minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-lg) var(--space-xl); padding-block: var(--space-xl); border-bottom: var(--rule-hair) solid var(--color-rule); align-items: start; }
 .cv__mark { width: 148px; height: 148px; background: var(--color-paper-3); overflow: hidden; border-radius: var(--radius-card); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-ink) 10%, transparent); }
 .cv__mark img { width: 100%; height: 100%; object-fit: cover; }
+.cv__mark--logo img { object-fit: contain; padding: var(--space-md); }
+.cv__mono { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: var(--text-title); letter-spacing: 0.04em; color: var(--color-ink-2); }
+.cv__loc { display: block; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3xs); }
 .cv__org { font-size: var(--text-title); margin: 0; }
 .cv__date { display: block; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-2xs); }
 .cv__role { font-family: var(--font-body); font-weight: 400; color: var(--color-ink); margin: 0; }
@@ -223,18 +226,22 @@ a { color: inherit; text-decoration: none; }
 
 /* ============================================================= RESPONSIVE */
 @media (max-width: 60rem) {
+  :root { --gutter: var(--space-md); }
   .about, .contact { grid-template-columns: minmax(0, 1fr); }
   .work__grid { gap: var(--space-xl); }
   .plates__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 200px; }
   .cv__row { grid-template-columns: 104px minmax(0, 1fr); }
   .cv__mark { width: 104px; height: 104px; }
-  .cv__desc { grid-column: 1 / -1; }
+  .cv__body { grid-column: 1 / -1; }
 }
 @media (max-width: 40rem) {
+  :root { --gutter: var(--space-sm); }
   .work__grid { grid-template-columns: minmax(0, 1fr); }
   .skills__group, .sheet__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); }
-  .hero__caption { position: static; margin: var(--space-md) 0 0; }
+  .hero { flex-direction: column; justify-content: flex-end; }
+  .hero__caption { position: static; align-self: flex-start; margin: var(--space-md) 0 0; padding-inline: var(--gutter); }
   .hero__scrim { background: linear-gradient(0deg, color-mix(in oklab, var(--color-paper) 94%, transparent) 0%, color-mix(in oklab, var(--color-paper) 72%, transparent) 34%, color-mix(in oklab, var(--color-paper) 20%, transparent) 72%, transparent 100%); }
+  .plates__grid { margin-inline: calc(-1 * var(--gutter)); gap: var(--space-2xs); grid-auto-rows: 190px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
