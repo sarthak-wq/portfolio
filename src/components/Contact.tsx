@@ -1,95 +1,50 @@
 import React from 'react';
-import { FaEnvelope, FaLinkedin, FaMapMarkedAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import contactbgimage from '../../assets/photo3.jpeg';
+import { Mail } from 'lucide-react';
 
-interface ContactProps {
-  isDarkMode: boolean;
-}
+const EMAIL = 'sarthakd.work2@gmail.com';
 
-const Contact: React.FC<ContactProps> = ({ isDarkMode }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const sectionItemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
-
+const Contact: React.FC = () => {
   return (
-    <div
-      className={`py-20 ${isDarkMode ? 'bg-backgroundDark text-textDark' : 'bg-backgroundLight text-textLight'}`}
-      id="contact"
-      ref={ref}
-      style={{
-        backgroundImage: `url(${contactbgimage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          variants={sectionItemVariants}
-        >
-          Contact Me
-        </motion.h2>
-        <div className="flex justify-center">
-          <motion.div
-            className="w-full md:w-2/3 lg:w-1/2 text-center"
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={sectionItemVariants}
-          >
-            <motion.h3
-              className="text-3xl font-bold text-secondary mb-4 animate-slide-up"
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={sectionItemVariants}
-            >
-              Let's Connect
-            </motion.h3>
-            <p className="text-lg leading-relaxed mb-10">
-              I'm always open to discussing new opportunities, collaborations, or just saying hello. Feel free to reach out!
-            </p>
-            <motion.div
-              className={`p-8 rounded-lg shadow-lg mx-auto ${isDarkMode ? 'bg-cardDark' : 'bg-cardLight'} hover-grow transition-all duration-300`}
-              variants={cardVariants}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-            >
-              <div className="mb-5 flex flex-col sm:flex-row items-center justify-center md:justify-start">
-                <FaEnvelope className="inline-block text-primary mr-3 text-2xl mb-2 sm:mb-0" />
-                <a href="mailto:sarthakd.work2@gmail.com" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium text-center sm:text-left">
-                  deshmukh.sar@northeastern.edu
-                </a>
-              </div>
-              <div className="mb-5 flex flex-col sm:flex-row items-center justify-center md:justify-start">
-                <FaLinkedin className="inline-block text-primary mr-3 text-2xl mb-2 sm:mb-0" />
-                <a href="http://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer" className="hover-underline-animated text-lg font-medium text-center sm:text-left">
-                  linkedin.com/in/sarthakdeshmukh1999
-                </a>
-              </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start">
-                <FaMapMarkedAlt className="inline-block text-primary mr-3 text-2xl mb-2 sm:mb-0" />
-                <span className="text-lg font-medium text-center sm:text-left">Boston, Massachusetts, United States</span>
-              </div>
-            </motion.div>
-          </motion.div>
+    <section className="section section--band" id="contact">
+      <div className="container contact">
+        <div data-reveal>
+          <h2 className="head__title">Say hello</h2>
+          <p className="head__lead">
+            Open to New Grad SDE and SDE II roles, and glad to talk through any of the work above.
+          </p>
+          <a href={`mailto:${EMAIL}`} className="btn btn--primary contact__action">
+            <Mail className="icon" aria-hidden="true" /> Email me
+          </a>
         </div>
+
+        <dl className="sheet" data-reveal>
+          <div className="sheet__row">
+            <dt className="sheet__label">Email</dt>
+            <dd className="sheet__value sheet__value--plain"><a href={`mailto:${EMAIL}`}>{EMAIL}</a></dd>
+          </div>
+          <div className="sheet__row">
+            <dt className="sheet__label">LinkedIn</dt>
+            <dd className="sheet__value sheet__value--plain">
+              <a href="https://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer">
+                in/sarthakdeshmukh1999
+              </a>
+            </dd>
+          </div>
+          <div className="sheet__row">
+            <dt className="sheet__label">GitHub</dt>
+            <dd className="sheet__value sheet__value--plain">
+              <a href="https://github.com/sarthak-wq" target="_blank" rel="noopener noreferrer">
+                github.com/sarthak-wq
+              </a>
+            </dd>
+          </div>
+          <div className="sheet__row">
+            <dt className="sheet__label">Based in</dt>
+            <dd className="sheet__value">Boston, Massachusetts</dd>
+          </div>
+        </dl>
       </div>
-    </div>
+    </section>
   );
 };
 

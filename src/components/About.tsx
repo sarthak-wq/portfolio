@@ -1,103 +1,74 @@
-import React from "react";
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import aboutmebgimage from '../../assets/photo9.jpeg';
+import React from 'react';
+import portrait from '../../assets/mypicwithryder.jpeg';
 
-interface AboutProps {
-  isDarkMode: boolean;
-}
+const facts = [
+  { label: 'Based in', value: 'Boston, Massachusetts' },
+  { label: 'Studying', value: 'MS Information Systems, Northeastern' },
+  { label: 'Experience', value: 'Four years in industry' },
+  { label: 'Focus', value: 'Full-stack and backend AI' },
+];
 
-const About: React.FC<AboutProps> = ({ isDarkMode }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+const skillGroups = [
+  { label: 'Languages', items: ['JavaScript', 'Python', 'Java'] },
+  { label: 'Frontend & mobile', items: ['React.js', 'React Native'] },
+  { label: 'Backend', items: ['Node.js', 'Express.js', '.NET Core', 'ASP.NET Core', 'RESTful APIs'] },
+  { label: 'Data', items: ['MongoDB', 'PostgreSQL', 'SQL Server', 'MySQL', 'Redis'] },
+  { label: 'Cloud & infra', items: ['AWS', 'Azure DevOps', 'Docker', 'Kubernetes', 'Linux', 'Git', 'CI/CD'] },
+  { label: 'AI & systems', items: ['LangChain', 'MCP Servers', 'System Design', 'Distributed Systems'] },
+  { label: 'Ways of working', items: ['Agile/Scrum'] },
+];
 
-  const allSkills = [
-    "React.js","React Native", "JavaScript", "Linux", "Docker", "Kubernetes",
-    ".NET Core", "Node.js", "Express.js", "Python", "Java", "ASP.NET Core", "RESTful APIs",
-    "MongoDB", "SQL Server", "PostgreSQL", "MySQL", "AWS", "Azure DevOps", "Git", "CI/CD",
-    "Agile/Scrum", "LangChain", "MCP Servers", "System Design", "Distributed Systems", "Redis"
-  ];
-
-  const sectionItemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
-  };
-
+const About: React.FC = () => {
   return (
-    <div
-      className={`py-20 relative text-white`} 
-      id="about"
-      ref={ref}
-      style={{
-        backgroundImage: `url(${aboutmebgimage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className={`absolute inset-0 ${isDarkMode ? 'bg-black/50' : 'bg-black/40'} z-0`}></div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.h2
-          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          variants={sectionItemVariants}
-        >
-          About Me
-        </motion.h2>
-        <div className="flex flex-col md:flex-row md:items-start md:space-x-12">
-          <motion.div
-            className="flex-1 space-y-6 mb-10 md:mb-0"
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={sectionItemVariants}
-          >
-            <motion.p className="text-xl leading-relaxed mb-6 text-white"
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={sectionItemVariants}>
-              I’m <span className="font-semibold text-primary">Sarthak Deshmukh</span>, a Full-Stack Developer and AI enthusiast, currently pursuing my Master’s in Information Systems at Northeastern University. With over three years of experience at Accenture, I specialize in building robust software solutions with technologies like <span className="font-semibold text-secondary">React, .NET, Python, and cloud platforms like AWS and Azure</span>. My passion lies in leveraging cutting-edge technologies to create intuitive user experiences and solve complex real-world problems, constantly seeking opportunities to learn, grow, and contribute to impactful projects.
-            </motion.p>
-            <motion.div
-              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark/80' : 'bg-cardLight/90'} hover-grow transition-all duration-300`}
-              variants={cardVariants}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-            >
-              <h3 className="text-3xl font-bold text-center text-primary mb-4">4</h3>
-              <p className={`text-center text-lg font-medium ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Years of Industry Experience</p>
-            </motion.div>
-          </motion.div>
+    <section className="section container" id="about">
+      <div className="head" data-reveal>
+        <h2 className="head__title">The short version</h2>
+      </div>
 
-          <div className="flex-1">
-            <motion.div
-              className={`p-6 rounded-lg shadow-lg ${isDarkMode ? 'bg-cardDark/80' : 'bg-cardLight/90'} hover-lift transition-all duration-300`}
-              variants={cardVariants}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-            >
-              <h3 className="text-xl font-bold text-secondary mb-4 border-b-2 border-primary pb-2">
-                Technologies & Tools
-              </h3>
-              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 list-none p-0">
-                {allSkills.map((skill, index) => (
-                  <li key={index} className={`text-lg flex items-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
-                    <span className="mr-2 text-primary">&#8226;</span> {skill}
-                  </li>
+      <div className="about">
+        <div className="about__col" data-reveal>
+          <div className="about__bio">
+            <p>
+              I&rsquo;m a full-stack developer finishing a Master&rsquo;s in Information Systems at
+              Northeastern. Three years at Accenture, a recent stint engineering backend AI agents at
+              Nokia, and work that runs from a Postgres query to the interface on top of it.
+            </p>
+            <p>
+              I&rsquo;m looking for a New Grad SDE or SDE II role. Off the clock I&rsquo;m out with a
+              camera on the coast. Most of the photographs on this page are mine.
+            </p>
+          </div>
+
+          <dl className="sheet">
+            {facts.map((f) => (
+              <div className="sheet__row" key={f.label}>
+                <dt className="sheet__label">{f.label}</dt>
+                <dd className="sheet__value">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <figure className="about__photo" data-reveal>
+          <img src={portrait} alt="Sarthak Deshmukh, outdoors with a golden retriever" loading="lazy" />
+        </figure>
+      </div>
+
+      <dl className="skills" data-reveal>
+        {skillGroups.map((g) => (
+          <div className="skills__group" key={g.label}>
+            <dt className="skills__label">{g.label}</dt>
+            <dd>
+              <ul className="skills__list">
+                {g.items.map((s) => (
+                  <li key={s}>{s}</li>
                 ))}
               </ul>
-            </motion.div>
+            </dd>
           </div>
-        </div>
-      </div>
-    </div>
+        ))}
+      </dl>
+    </section>
   );
 };
 

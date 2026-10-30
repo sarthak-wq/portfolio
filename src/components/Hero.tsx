@@ -1,168 +1,50 @@
 import React from 'react';
-import HeroImage from '../../assets/mypicwithryder.jpeg';
-import { Button } from 'antd';
-import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaFileAlt } from 'react-icons/fa';
-import herobgimage from '../../assets/photo6.jpeg';
+import { Mail, FileText, Linkedin, Github } from 'lucide-react';
+import heroImage from '../../assets/photo17.jpeg';
 
-interface HeroProps {
-  isDarkMode: boolean;
-}
+const EMAIL = 'sarthakd.work2@gmail.com';
 
-const Hero: React.FC<HeroProps> = ({ isDarkMode }) => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: {
-        staggerChildren: 0.05, // Stagger delay for each child word
-        delayChildren: 0.5, // Delay before the first word starts animating
-      }
-    },
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-  };
-
-  const imageContainerVariants = {
-    hidden: { opacity: 0, x: 100 }, // Slide from right
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.6 } },
-  };
-
-  const buttonContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delay: 1 } },
-  };
-
-  const heroImageVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.5, delay: 0.8, ease: 'easeOut' } },
-  };
-
-  const greeting = "Hi, I'm ".split(' ');
-  const name = "Sarthak Deshmukh".split(' ');
-  const roleDescription = "Full-Stack Developer & System Architect crafting intuitive and efficient digital experiences.".split(' ');
-  const availability = "Open to New Grad SDE / SDE 2 role.".split(' ');
-
+const Hero: React.FC = () => {
   return (
-    <div
-      id="home"
-      className={`relative min-h-screen flex items-center justify-center py-20 overflow-hidden
-        ${isDarkMode ? 'text-textDark' : 'text-textLight'}
-      `}
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${herobgimage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between z-10">
-        {/* Text Content */}
-        <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-          <motion.h1
-            className="text-5xl lg:text-6xl font-extrabold leading-tight animate-fade-in text-white"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {greeting.map((word, index) => (
-              <motion.span key={index} variants={wordVariants} className="inline-block mr-2 text-white">
-                {word}
-              </motion.span>
-            ))}
-            <span className="text-primary inline-block text-accent"> {/* For Sarthak Deshmukh to be primary color */}
-              {name.map((word, index) => (
-                <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
-                  {word}
-                </motion.span>
-              ))}
-            </span>
-          </motion.h1>
-          <motion.p
-            className="mt-4 text-xl lg:text-2xl font-light animate-slide-up text-gray-200"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {roleDescription.map((word, index) => (
-              <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
-                  {word}
-            </motion.span>
-            ))}
-          </motion.p>
-          <motion.p
-            className="mt-4 text-xl lg:text-2xl font-light animate-slide-up text-gray-200"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {availability.map((word, index) => (
-              <motion.span key={index} variants={wordVariants} className="inline-block mr-2">
-                  {word}
-            </motion.span>
-            ))}
-          </motion.p>
-          <motion.div
-            className="mt-10 flex flex-wrap justify-center md:justify-start gap-4"
-            variants={buttonContainerVariants} // Use new buttonContainerVariants
-            initial="hidden"
-            animate="visible"
-          >
-            <a href="https://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer">
-              <Button
-                type="primary"
-                className="bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2 border-none"
-              >
-                <FaLinkedin /> <span>LinkedIn</span>
-              </Button>
-            </a>
-            <a href="https://github.com/sarthak-deshmukh1999" target="_blank" rel="noopener noreferrer">
-              <Button
-                className="bg-gray-800 hover:bg-gray-700 text-white border-none font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
-              >
-                <FaGithub /> <span>GitHub</span>
-              </Button>
-            </a>
-            <a href="/Latest_Resume2026.pdf" target="_blank" rel="noopener noreferrer">
-              <Button
-                className="bg-accent hover:bg-yellow-600 text-black border-none font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out hover-lift flex items-center space-x-2"
-              >
-                <FaFileAlt /> <span>Resume</span>
-              </Button>
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Image/Visual Element with Circular Border */}
-        <motion.div
-          className="md:w-1/2 flex justify-center items-center relative"
-          variants={imageContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-secondary flex items-center justify-center z-10"> 
-            {/* Circular Border Animation */}
-            <div
-              className={
-                `absolute inset-[-4px] rounded-2xl custom-border-animation ${isDarkMode ? 'dark-mode-border' : 'light-mode-border'}`
-              }
-            ></div>
-            <motion.img
-              src={HeroImage}
-              alt="Sarthak Deshmukh"
-              className="absolute w-60 h-60 md:w-72 md:h-72 rounded-2xl object-cover shadow-2xl"
-              variants={heroImageVariants}
-              initial="hidden"
-              animate="visible"
-            />
-          </div>
-        </motion.div>
+    <header className="hero" id="home">
+      <div className="hero__media">
+        <img
+          src={heroImage}
+          alt="A lone figure on the sand at Bird Rock, 17 Mile Drive, with the Pacific and a wooded headland beyond"
+          width={6000}
+          height={4000}
+          fetchPriority="high"
+        />
       </div>
-    </div>
+      <div className="hero__scrim" aria-hidden="true" />
+
+      <div className="container">
+        <div className="hero__content" data-reveal>
+          <h1 className="hero__title">Sarthak Deshmukh</h1>
+          <p className="hero__lead">
+            Full-stack developer and system architect, open to New Grad SDE and SDE II roles.
+          </p>
+          <div className="hero__actions">
+            <a href={`mailto:${EMAIL}`} className="btn btn--primary">
+              <Mail className="icon" aria-hidden="true" /> Email me
+            </a>
+            <a href="/Latest_Resume2026.pdf" target="_blank" rel="noopener noreferrer" className="btn">
+              <FileText className="icon" aria-hidden="true" /> Résumé
+            </a>
+          </div>
+          <div className="hero__links">
+            <a href="https://www.linkedin.com/in/sarthakdeshmukh1999" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="icon" aria-hidden="true" /> LinkedIn
+            </a>
+            <a href="https://github.com/sarthak-wq" target="_blank" rel="noopener noreferrer">
+              <Github className="icon" aria-hidden="true" /> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p className="hero__caption label">Bird Rock, 17 Mile Drive, California</p>
+    </header>
   );
 };
 

@@ -1,16 +1,12 @@
-import React from "react";
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import React from 'react';
+import { Github, ExternalLink } from 'lucide-react';
 
-// Import all project images
 import memexlensImage from '../../assets/memexlens.png';
 import galleryImage from '../../assets/gallery.png';
 import awsImage from '../../assets/aws.png';
 import etestImage from '../../assets/etest.jpg';
 import ddsImage from '../../assets/dds.jpg';
 import chatbotImage from '../../assets/chatbot.jpg';
-import projectbgimage from '../../assets/photo7.jpeg';
 
 interface Project {
   id: number;
@@ -22,161 +18,95 @@ interface Project {
   website?: string;
 }
 
-interface ProjectsProps {
-  isDarkMode: boolean;
-}
-
 const projects: Project[] = [
   {
     id: 4,
-    name: "Semantic Browsing History Chrome Extension",
-    description: "A Chrome extension for natural language search of browsing history, powered by Flask, PostgreSQL, Gemini GenAI, and Pinecone, with a Next.js UI.",
-    technologies: "Python, Google Cloud Run, Docker, Pinecone, PostgreSQL, Flask, Gemini GenAI, Next.js",
+    name: 'Semantic Browsing History',
+    description:
+      'A Chrome extension for natural-language search of your browsing history, powered by Flask, PostgreSQL, Gemini, and Pinecone, with a Next.js UI.',
+    technologies: 'Python, Google Cloud Run, Docker, Pinecone, PostgreSQL, Flask, Gemini, Next.js',
     image: memexlensImage,
-    github: "https://github.com/AgentHacks/MemExLens_Server"
+    github: 'https://github.com/AgentHacks/MemExLens_Server',
   },
   {
     id: 5,
-    name: "Personal Photo Gallery",
-    description: "A cloud-based photo gallery (React, Node.js, Express) with Firestore and Google Cloud Storage, deployed on Google Cloud with GitHub Actions CI/CD.",
-    technologies: "Node.js, Google Cloud Run, Firestore, Material UI, React, Express, shadcn/ui, Google Cloud Storage, Google App Engine, GitHub Actions",
-    image: galleryImage, 
-    github: "https://github.com/sarthak-deshmukh1999/galleryserver",
-    website: "https://galleryapp-457905.uc.r.appspot.com/gallery"
+    name: 'Personal Photo Gallery',
+    description:
+      'A cloud-based photo gallery (React, Node.js, Express) on Firestore and Google Cloud Storage, deployed to Google Cloud with GitHub Actions CI/CD.',
+    technologies: 'Node.js, Google Cloud Run, Firestore, Material UI, React, Express, shadcn/ui, Cloud Storage, App Engine, GitHub Actions',
+    image: galleryImage,
+    github: 'https://github.com/sarthak-deshmukh1999/galleryserver',
+    website: 'https://galleryapp-457905.uc.r.appspot.com/gallery',
   },
   {
     id: 6,
-    name: "AWS Cloud Infrastructure",
-    description: "Highly available and secure AWS infrastructure provisioned with Terraform, automated via GitHub Actions, using IAM, KMS, Load Balancers, and Auto Scaling.",
-    technologies: "Packer, Terraform, EC2, Load Balancer, Auto Scaler, AWS, IAM, KMS, Secrets Manager, Route 53, GitHub Actions",
-    image: awsImage, 
-    github: "https://github.com/SarthakOrg/tf-aws-infra"
+    name: 'AWS Cloud Infrastructure',
+    description:
+      'Highly available, secure AWS infrastructure provisioned with Terraform and automated via GitHub Actions, using IAM, KMS, load balancers, and auto scaling.',
+    technologies: 'Packer, Terraform, EC2, Load Balancer, Auto Scaler, AWS, IAM, KMS, Secrets Manager, Route 53, GitHub Actions',
+    image: awsImage,
+    github: 'https://github.com/SarthakOrg/tf-aws-infra',
   },
   {
     id: 1,
-    name: "Online Testing System",
-    description: "A web-based system that enables online examinations through internet or intranet using computer systems. The system provides automated evaluation, real-time results, and intelligent answer processing capabilities.",
-    technologies: "PHP, Html, CSS, JavaScript, Bootstrap, MySQL",
+    name: 'Online Testing System',
+    description:
+      'A web-based system for online examinations over internet or intranet, with automated evaluation, real-time results, and intelligent answer processing.',
+    technologies: 'PHP, HTML, CSS, JavaScript, Bootstrap, MySQL',
     image: etestImage,
-    github: "https://github.com/sarthak-wq/ETest-System",
+    github: 'https://github.com/sarthak-wq/ETest-System',
   },
   {
     id: 2,
-    name: "Drowsiness Detector",
-    description: "An efficient real-time drowsiness detection system to prevent road accidents caused by driver fatigue. It uses computer vision techniques to monitor driver's facial features and alerts them when signs of drowsiness are detected.",
-    technologies: "Matlab, Voila Jones Algorithm",
+    name: 'Drowsiness Detector',
+    description:
+      'A real-time drowsiness detector to prevent road accidents from driver fatigue, using computer vision to read facial features and alert the driver.',
+    technologies: 'Matlab, Viola-Jones Algorithm',
     image: ddsImage,
-    github: "https://github.com/sarthak-wq/Drowsiness-Detector",
+    github: 'https://github.com/sarthak-wq/Drowsiness-Detector',
   },
   {
     id: 3,
-    name: "AI Course Advisor",
-    description: "AI-powered course registration platform simplifies the academic planning process by helping students select courses that align with their academic goals and career aspirations.",
-    technologies: "MERN Stack, Llama-70B",
+    name: 'AI Course Advisor',
+    description:
+      'An AI course-registration platform that helps students pick courses aligned with their academic goals and career plans.',
+    technologies: 'MERN Stack, Llama-70B',
     image: chatbotImage,
-    github: "https://github.com/sarthak-wq/enrollai",
-    website: "https://enrollfrontend.vercel.app/"
-  }
+    github: 'https://github.com/sarthak-wq/enrollai',
+    website: 'https://enrollfrontend.vercel.app/',
+  },
 ];
 
-const Projects: React.FC<ProjectsProps> = ({ isDarkMode }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1, // Trigger when 10% of the element is visible
-  });
-
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: (i: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    }),
-  };
-
+const Projects: React.FC = () => {
   return (
-    <div
-      className={`py-20 relative overflow-hidden`}
-      id="project"
-      ref={ref}
-      style={{
-        backgroundImage: `url(${projectbgimage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      {/* Removed the overlay div */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.h2
-          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-primary animate-fade-in"
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          variants={sectionVariants}
-        >
-          My Projects
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className={`relative p-6 rounded-lg shadow-lg group overflow-hidden
-                ${isDarkMode ? 'bg-cardDark/95' : 'bg-cardLight/95'}
-                transition-all duration-300 ease-in-out hover:shadow-xl hover-grow
-              `}
-              variants={cardVariants}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              custom={index}
-            >
-              <img
-                src={project.image}
-                alt={project.name}
-                className="rounded-md mb-4 w-full h-48 object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
-              />
-              <h3 className="text-2xl font-bold mb-2 text-secondary group-hover:text-primary transition-colors duration-300">
-                {project.name}
-              </h3>
-              <p className={`text-sm font-medium opacity-80 mb-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                {project.technologies}
-              </p>
-              <p className={`text-base leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-3 mt-4">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-primary hover:bg-secondary text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out hover-lift"
-                >
-                  <FaGithub /> <span>GitHub</span>
-                </a>
-                {project.website && (
-                  <a
-                    href={project.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 bg-accent hover:bg-yellow-600 text-textLight font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out hover-lift"
-                  >
-                    <FaExternalLinkAlt /> <span>Live Demo</span>
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+    <section className="section container" id="project">
+      <div className="head" data-reveal>
+        <h2 className="head__title">What I&rsquo;ve shipped</h2>
       </div>
-    </div>
+
+      <div className="work__grid">
+        {projects.map((project, i) => (
+          <article className="work__item" key={project.id} data-reveal style={{ '--i': (i % 2) } as React.CSSProperties}>
+            <div className="work__shot">
+              <img src={project.image} alt={`${project.name} screenshot`} loading="lazy" />
+            </div>
+            <h3 className="work__name">{project.name}</h3>
+            <p className="work__tech">{project.technologies}</p>
+            <p className="work__desc">{project.description}</p>
+            <div className="work__links">
+              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                <Github className="icon" aria-hidden="true" /> GitHub
+              </a>
+              {project.website && (
+                <a href={project.website} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="icon" aria-hidden="true" /> Live demo
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 };
 
